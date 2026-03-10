@@ -62,8 +62,9 @@ body {
     border-bottom-color: var(--border);
 }
 .nav-inner {
-    max-width: none;
-    padding: 0 48px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 60px;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;

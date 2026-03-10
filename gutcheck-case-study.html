@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="GutCheck Case Study - Quinn Boyle UX Portfolio">
-    <title>GutCheck Case Study - Quinn Boyle</title>
+    <meta name="description" content="VitaLog Case Study - Quinn Boyle UX Portfolio">
+    <title>VitaLog Case Study - Quinn Boyle</title>
     <link rel="stylesheet" href="styles-light.css">
     <link rel="stylesheet" href="case-study-light.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,9 +63,48 @@
             text-align: right;
         }
 
+        /* Persona cards */
+        .personas-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 8px;
+        }
+        .persona-card {
+            padding: 28px 32px;
+            background: var(--bg-elevated);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+        .persona-card h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+            color: var(--text-primary);
+        }
+        .persona-role {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #E05A4E;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0 0 16px 0;
+        }
+        .persona-card ul {
+            margin: 0;
+            padding: 0 0 0 20px;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.7;
+        }
+        .persona-card ul li {
+            margin-bottom: 4px;
+        }
+
         @media (max-width: 800px) {
             .screens-grid { grid-template-columns: repeat(2, 1fr); }
             .bar-label { width: 140px; font-size: 0.8rem; }
+            .persona-card { padding: 20px 20px; }
         }
         @media (max-width: 480px) {
             .screens-grid { grid-template-columns: 1fr; }
@@ -93,7 +132,7 @@
     <section class="case-hero">
         <div class="container container-lg">
             <div class="case-hero-content">
-                <h1 class="case-title">GutCheck</h1>
+                <h1 class="case-title">VitaLog</h1>
 
                 <div class="case-tags">
                     <span class="project-tag">User Research</span>
@@ -102,7 +141,7 @@
                     <span class="project-tag">Mobile App</span>
                 </div>
                 <p class="case-summary">
-                    A mobile app that helps people with celiac disease, IBS, and food sensitivities log what they eat and how they feel — then surfaces patterns to help them identify their triggers and take control of their health.
+                    A mobile app that helps people with celiac disease, IBS, and food sensitivities log what they eat and how they feel, then surfaces patterns to help them identify their triggers and take control of their health.
                 </p>
                 <div class="case-meta-grid">
                     <div class="case-meta-item">
@@ -127,10 +166,10 @@
             <!-- Figma prototype embed as hero visual -->
             <div style="margin-top: 40px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); background: #f5f5f5; display: flex; justify-content: center; align-items: center; min-height: 420px;">
                 <iframe
-                    style="border: none; display: block;"
-                    width="100%"
-                    height="520"
-                    src="https://embed.figma.com/proto/Usa9KWI2psLFbrLFTdLBTt/Group-Project-Deliverable-3--High-Fi-Prototype?node-id=0-1&embed-host=share&hide-ui=1"
+                    style="border: 1px solid rgba(0, 0, 0, 0.1); display: block;"
+                    width="800"
+                    height="450"
+                    src="https://embed.figma.com/proto/Usa9KWI2psLFbrLFTdLBTt/Group-Project-Deliverable-3--High-Fi-Prototype?node-id=131-1887&p=f&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=131%3A1887&show-proto-sidebar=1&embed-host=share"
                     allowfullscreen>
                 </iframe>
             </div>
@@ -190,7 +229,7 @@
         <!-- 1. Empathize -->
         <section class="case-section" id="empathize">
             <div class="container">
-                <div class="section-label">01 — Empathize</div>
+                <div class="section-label">01 Empathize</div>
                 <h2 class="section-title">Understanding the User</h2>
 
                 <div class="content-block">
@@ -198,7 +237,7 @@
                     <p>
                         Around 3 million Americans have celiac disease, and tens of millions more live with IBS, gluten sensitivity,
                         or other food-triggered conditions. For these people, figuring out which foods cause symptoms is genuinely
-                        difficult — reactions can be delayed by hours or even days, making cause and effect nearly impossible to
+                        difficult. Reactions can be delayed by hours or even days, making cause and effect nearly impossible to
                         trace without careful record-keeping. Most people rely on memory or scattered notes in their phone,
                         if they track anything at all.
                     </p>
@@ -211,7 +250,7 @@
                 <div class="content-block">
                     <h3>Research Methods</h3>
                     <p>
-                        We used a mixed-methods approach — a screened survey distributed through celiac and IBS support communities
+                        We used a mixed-methods approach: a screened survey distributed through celiac and IBS support communities
                         on Reddit and Facebook, followed by one-on-one interviews with participants who opted in. We also
                         conducted a competitive audit of existing food diary apps to identify gaps.
                     </p>
@@ -279,7 +318,7 @@
                         <div class="pain-point-card">
                             <div class="pain-point-icon"></div>
                             <h4>Delayed Reactions Break the Link</h4>
-                            <p>Symptoms from celiac or IBS often appear 4–24 hours after eating. By then, users have forgotten exactly what they ate — especially ingredients in restaurant meals or packaged foods.</p>
+                            <p>Symptoms from celiac or IBS often appear 4–24 hours after eating. By then, users have forgotten exactly what they ate, especially ingredients in restaurant meals or packaged foods.</p>
                             <blockquote>"I'll feel terrible on a Tuesday and have no idea if it's from lunch yesterday or dinner Sunday. By that point I can't remember what I had."</blockquote>
                         </div>
                         <div class="pain-point-card">
@@ -291,7 +330,7 @@
                         <div class="pain-point-card">
                             <div class="pain-point-icon"></div>
                             <h4>No Actionable Feedback</h4>
-                            <p>Even when users did track consistently, they couldn't make sense of the data. Raw logs don't show patterns — and users need those patterns to have informed conversations with their gastroenterologist.</p>
+                            <p>Even when users did track consistently, they couldn't make sense of the data. Raw logs don't show patterns, and users need those patterns to have informed conversations with their gastroenterologist.</p>
                             <blockquote>"I have months of notes but I still don't know what's causing it. No one's looked at it and told me anything useful, including me."</blockquote>
                         </div>
                     </div>
@@ -303,7 +342,7 @@
         <!-- 2. Define -->
         <section class="case-section" id="define">
             <div class="container">
-                <div class="section-label">02 — Define</div>
+                <div class="section-label">02 Define</div>
                 <h2 class="section-title">Framing the Problem</h2>
 
                 <div class="content-block">
@@ -311,7 +350,7 @@
                     <div class="problem-statement">
                         <p>
                             <strong>How might we</strong> help people with food-triggered conditions log meals and symptoms
-                            quickly enough that it becomes a habit — and then make sense of that data so they can actually
+                            quickly enough that it becomes a habit, and then make sense of that data so they can actually
                             identify their triggers?
                         </p>
                     </div>
@@ -324,21 +363,36 @@
 
                 <div class="content-block">
                     <h3>User Personas</h3>
-                    <div class="insights-grid">
-                        <div class="insight-card">
-                            <div class="insight-number">01</div>
-                            <h4>Maya, 26 — Newly Diagnosed Celiac</h4>
-                            <p>Diagnosed 8 months ago. Still learning what contains gluten and what doesn't. Gets anxious eating out. Wants reassurance that she's catching all her exposures, and a log she can show her dietitian.</p>
+                    <div class="personas-grid">
+                        <div class="persona-card">
+                            <h4>Maya, 26</h4>
+                            <p class="persona-role">Newly Diagnosed Celiac</p>
+                            <ul>
+                                <li>Diagnosed 8 months ago</li>
+                                <li>Still learning what contains gluten and what does not</li>
+                                <li>Gets anxious eating out</li>
+                                <li>Wants reassurance that she is catching all her exposures</li>
+                                <li>Wants a log she can show her dietitian</li>
+                            </ul>
                         </div>
-                        <div class="insight-card">
-                            <div class="insight-number">02</div>
-                            <h4>James, 34 — IBS, Unconfirmed Triggers</h4>
-                            <p>Has had IBS for years but never pinned down his specific triggers. Has tried elimination diets on his own without success. Needs a tool that helps him see patterns over time, not just log data into a void.</p>
+                        <div class="persona-card">
+                            <h4>James, 34</h4>
+                            <p class="persona-role">IBS, Unconfirmed Triggers</p>
+                            <ul>
+                                <li>Has had IBS for years but never pinned down his specific triggers</li>
+                                <li>Has tried elimination diets on his own without success</li>
+                                <li>Needs a tool that helps him see patterns over time, not just log data into a void</li>
+                            </ul>
                         </div>
-                        <div class="insight-card">
-                            <div class="insight-number">03</div>
-                            <h4>Dana, 41 — Managing for a Family Member</h4>
-                            <p>Her 10-year-old daughter has celiac. Dana does most of the tracking. Needs something fast she can fill in at the dinner table, and a history she can bring to pediatric GI appointments.</p>
+                        <div class="persona-card">
+                            <h4>Dana, 41</h4>
+                            <p class="persona-role">Managing for a Family Member</p>
+                            <ul>
+                                <li>Her 10-year-old daughter has celiac</li>
+                                <li>Dana does most of the tracking</li>
+                                <li>Needs something fast she can fill in at the dinner table</li>
+                                <li>Needs a history she can bring to pediatric GI appointments</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -349,22 +403,22 @@
                         <div class="insight-card">
                             <div class="insight-number">A</div>
                             <h4>Speed First</h4>
-                            <p>A log entry should take under 30 seconds. We designed around quick-add meals with free text, not food database searches. Symptoms are logged with a single tap + optional severity slider.</p>
+                            <p>A log entry should take under 30 seconds. We designed around quick-add meals with free text, not food database searches. Symptoms are logged with a single tap and optional severity slider.</p>
                         </div>
                         <div class="insight-card">
                             <div class="insight-number">B</div>
                             <h4>Patterns, Not Just Data</h4>
-                            <p>The app's job isn't just to store information — it's to surface connections. The insight view shows which foods appear most frequently before symptom episodes.</p>
+                            <p>The app's job isn't just to store information. It's to surface connections. The insight view shows which foods appear most frequently before symptom episodes.</p>
                         </div>
                         <div class="insight-card">
                             <div class="insight-number">C</div>
                             <h4>Non-Judgmental Tone</h4>
-                            <p>This isn't a diet app. Users shouldn't feel guilt for what they ate. Language throughout is clinical but warm — supportive, not prescriptive.</p>
+                            <p>This isn't a diet app. Users shouldn't feel guilt for what they ate. Language throughout is clinical but warm, supportive and not prescriptive.</p>
                         </div>
                         <div class="insight-card">
                             <div class="insight-number">D</div>
                             <h4>Doctor-Ready Export</h4>
-                            <p>A shareable summary report — PDF or printable — so conversations with a gastroenterologist or dietitian start with real data instead of vague recollections.</p>
+                            <p>A shareable summary report (PDF or printable) so conversations with a gastroenterologist or dietitian start with real data instead of vague recollections.</p>
                         </div>
                     </div>
                 </div>
@@ -375,20 +429,20 @@
         <!-- 3. Ideate -->
         <section class="case-section" id="ideate">
             <div class="container">
-                <div class="section-label">03 — Ideate</div>
+                <div class="section-label">03 Ideate</div>
                 <h2 class="section-title">Exploring Solutions</h2>
 
                 <div class="content-block">
                     <h3>Ideation Process</h3>
                     <p>
-                        We ran two ideation sessions in Miro — a "Crazy 8s" round for quick divergent ideas, followed by
+                        We ran two ideation sessions in Miro: a "Crazy 8s" round for quick divergent ideas, followed by
                         an affinity mapping session to cluster and prioritize. The core debate was around how much structure
-                        to impose on the logging experience: highly structured (dropdowns, categories, severity scales)
-                        versus freeform (just type what you ate/felt). Research strongly suggested freeform with light
-                        scaffolding won — users hated being forced to search a food database.
+                        to impose on the logging experience. Highly structured (dropdowns, categories, severity scales)
+                        versus freeform (just type what you ate or felt). Research strongly suggested freeform with light
+                        scaffolding won, as users hated being forced to search a food database.
                     </p>
                     <p>
-                        We also debated whether the correlation/pattern engine should be manual (user annotates what they
+                        We also debated whether the correlation and pattern engine should be manual (user annotates what they
                         think is connected) or automatic (app surfaces possible links). We landed on automatic surfacing
                         with user confirmation, keeping people in control of what they act on.
                     </p>
@@ -399,13 +453,13 @@
                     <div class="decisions-grid">
                         <div class="decision-card">
                             <h4>1. Quick-Log Meal Entry</h4>
-                            <p><strong>Why:</strong> The #1 reason users abandon tracking is that logging takes too long. We built a free-text meal entry with tag autocomplete for common items — no food database required.</p>
-                            <p><strong>Trade-off:</strong> Loses nutritional data, but our users aren't counting calories — they're looking for patterns.</p>
+                            <p><strong>Why:</strong> The #1 reason users abandon tracking is that logging takes too long. We built a free-text meal entry with tag autocomplete for common items, with no food database required.</p>
+                            <p><strong>Trade-off:</strong> Loses nutritional data, but our users aren't counting calories. They're looking for patterns.</p>
                         </div>
                         <div class="decision-card">
                             <h4>2. One-Tap Symptom Check-In</h4>
-                            <p><strong>Why:</strong> Symptom episodes often hit when users feel least motivated to open an app. A widget-style check-in (type + severity) had to be the fastest possible interaction.</p>
-                            <p><strong>Trade-off:</strong> Considered a timed notification approach, but users resisted mandatory prompts — opt-in reminders only.</p>
+                            <p><strong>Why:</strong> Symptom episodes often hit when users feel least motivated to open an app. A widget-style check-in (type and severity) had to be the fastest possible interaction.</p>
+                            <p><strong>Trade-off:</strong> Considered a timed notification approach, but users resisted mandatory prompts. Opt-in reminders only.</p>
                         </div>
                         <div class="decision-card">
                             <h4>3. Pattern Insights Dashboard</h4>
@@ -415,7 +469,7 @@
                         <div class="decision-card">
                             <h4>4. Calendar History View</h4>
                             <p><strong>Why:</strong> Users wanted to look back at a specific bad day and trace it forward and backward. A calendar with color-coded symptom severity lets them quickly locate and review any date.</p>
-                            <p><strong>Trade-off:</strong> Kept the calendar view simple — avoided adding streaks or gamification that felt inappropriate for a health context.</p>
+                            <p><strong>Trade-off:</strong> Kept the calendar view simple. Avoided adding streaks or gamification that felt inappropriate for a health context.</p>
                         </div>
                     </div>
                 </div>
@@ -426,15 +480,15 @@
         <!-- 4. Prototype -->
         <section class="case-section" id="prototype">
             <div class="container">
-                <div class="section-label">04 — Prototype</div>
+                <div class="section-label">04 Prototype</div>
                 <h2 class="section-title">From Wireframes to High-Fidelity</h2>
 
                 <div class="content-block">
                     <p>
-                        We started with low-fidelity wireframes on paper and in Figma to nail the core flows — logging a meal,
+                        We started with low-fidelity wireframes on paper and in Figma to nail the core flows: logging a meal,
                         logging a symptom, and viewing the pattern insights. After two rounds of feedback, we moved to a
                         high-fidelity prototype with a warm coral and deep teal color palette. We intentionally avoided
-                        the clinical white-and-blue look of most health apps — GutCheck should feel supportive, not sterile.
+                        the clinical white-and-blue look of most health apps. VitaLog should feel supportive, not sterile.
                     </p>
                 </div>
 
@@ -459,7 +513,7 @@
                         </div>
                         <div class="screen-card">
                             <h4>Pattern Insights</h4>
-                            <p>Auto-generated list of ingredients that appear most often in the 24 hours before reported symptoms — ranked by frequency.</p>
+                            <p>Auto-generated list of ingredients that appear most often in the 24 hours before reported symptoms, ranked by frequency.</p>
                         </div>
                         <div class="screen-card">
                             <h4>Report Export</h4>
@@ -470,8 +524,8 @@
                             <p>Home screen showing today's log status, a streak indicator, and any recently surfaced pattern alerts for review.</p>
                         </div>
                         <div class="screen-card">
-                            <h4>Settings & Profile</h4>
-                            <p>Condition profile, reminder preferences, and dietary flags — all editable as the user's situation changes over time.</p>
+                            <h4>Settings &amp; Profile</h4>
+                            <p>Condition profile, reminder preferences, and dietary flags, all editable as the user's situation changes over time.</p>
                         </div>
                     </div>
                 </div>
@@ -479,14 +533,14 @@
                 <div class="image-block">
                     <div style="border-radius: 16px; overflow: hidden; border: 1px solid var(--border); background: #f5f5f5; display: flex; justify-content: center; align-items: center; min-height: 520px;">
                         <iframe
-                            style="border: none; display: block;"
-                            width="100%"
-                            height="600"
-                            src="https://embed.figma.com/proto/Usa9KWI2psLFbrLFTdLBTt/Group-Project-Deliverable-3--High-Fi-Prototype?node-id=0-1&embed-host=share"
+                            style="border: 1px solid rgba(0, 0, 0, 0.1); display: block;"
+                            width="800"
+                            height="450"
+                            src="https://embed.figma.com/proto/Usa9KWI2psLFbrLFTdLBTt/Group-Project-Deliverable-3--High-Fi-Prototype?node-id=131-1887&p=f&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=131%3A1887&show-proto-sidebar=1&embed-host=share"
                             allowfullscreen>
                         </iframe>
                     </div>
-                    <p class="image-caption">Interactive high-fidelity prototype — GutCheck</p>
+                    <p class="image-caption">Interactive high-fidelity prototype — VitaLog</p>
                 </div>
 
             </div>
@@ -495,13 +549,13 @@
         <!-- 5. Test -->
         <section class="case-section" id="test">
             <div class="container">
-                <div class="section-label">05 — Test</div>
+                <div class="section-label">05 Test</div>
                 <h2 class="section-title">Validating with Real Users</h2>
 
                 <div class="content-block">
                     <h3>Usability Testing</h3>
                     <p>
-                        We conducted two rounds of moderated usability testing — an initial round with 6 participants
+                        We conducted two rounds of moderated usability testing: an initial round with 6 participants
                         on our mid-fidelity prototype, and a second round with 7 participants on the high-fidelity build.
                         Participants were recruited from our survey pool and matched to our three personas. Sessions
                         were run over Zoom with screen sharing, lasting 30–40 minutes each.
@@ -536,18 +590,18 @@
                 </div>
 
                 <div class="content-block">
-                    <h3>Key Findings & Iterations</h3>
+                    <h3>Key Findings &amp; Iterations</h3>
                     <div class="findings-grid">
                         <div class="finding-card">
                             <div class="finding-status success">✓ What Worked</div>
                             <p><strong>Quick-log flow:</strong> 12/13 participants completed the meal log task in under 45 seconds without guidance. "This is so much faster than anything I've tried" was a recurring comment.</p>
                             <p><strong>Calendar view:</strong> Universally praised. Users immediately understood the color coding and navigated back in time without prompting.</p>
                             <p><strong>Pattern insights screen:</strong> 10/13 participants said this was the feature they'd come back for most. Several said they wished they had something like it right now.</p>
-                            <p><strong>Tone and design:</strong> Multiple participants mentioned the app didn't feel clinical or scary — important for people who are already anxious about their health.</p>
+                            <p><strong>Tone and design:</strong> Multiple participants mentioned the app didn't feel clinical or scary, which is important for people who are already anxious about their health.</p>
                         </div>
                         <div class="finding-card">
                             <div class="finding-status warning">⚡ What Needed Work</div>
-                            <p><strong>Symptom entry discoverability:</strong> In round 1, 4/6 participants didn't notice the symptom log button — it was buried in a tab bar. Moved it to a prominent FAB on the home screen in the revised prototype.</p>
+                            <p><strong>Symptom entry discoverability:</strong> In round 1, 4/6 participants didn't notice the symptom log button. It was buried in a tab bar. We moved it to a prominent FAB on the home screen in the revised prototype.</p>
                             <p><strong>Insights language:</strong> Several users were confused by the phrase "possible trigger." We revised to "appears frequently before symptom days" with a tooltip explaining the methodology.</p>
                             <p><strong>Onboarding length:</strong> First version had 7 setup screens. Reduced to 4 by making condition profile editable later, not required up front.</p>
                             <p><strong>Report export:</strong> Users loved the concept but wanted to preview the report before downloading. Added an in-app preview screen before the export action.</p>
@@ -571,7 +625,7 @@
                             <span class="bar-pct">4.1/5</span>
                         </div>
                         <div class="bar-row">
-                            <span class="bar-label">Visual design & tone</span>
+                            <span class="bar-label">Visual design &amp; tone</span>
                             <div class="bar-track"><div class="bar-fill" style="width:94%"></div></div>
                             <span class="bar-pct">4.7/5</span>
                         </div>
@@ -594,27 +648,27 @@
         <!-- Outcome / Reflection -->
         <section class="case-section" id="reflection">
             <div class="container container-sm">
-                <div class="section-label">06 — Outcome</div>
+                <div class="section-label">06 Outcome</div>
                 <h2 class="section-title">What We Learned</h2>
 
                 <div class="content-block">
                     <p>
-                        GutCheck reinforced something I think about a lot in health UX: the biggest barrier to behavior change
-                        is rarely motivation — it's friction. People with celiac disease <em>want</em> to track their food.
+                        VitaLog reinforced something I think about a lot in health UX: the biggest barrier to behavior change
+                        is rarely motivation. It's friction. People with celiac disease <em>want</em> to track their food.
                         They're sick. They have every reason to. What stops them is that the act of logging is annoying
-                        enough that on a bad day, they just don't. Designing around that reality — making the 30-second log
-                        the default, not the exception — was the core design challenge, and the testing results suggest
+                        enough that on a bad day, they just don't. Designing around that reality, making the 30-second log
+                        the default and not the exception, was the core design challenge, and the testing results suggest
                         we got reasonably close.
                     </p>
                     <p>
-                        The pattern insights feature was the biggest learning. Users didn't just want a place to store data —
-                        they wanted someone (or something) to help them make sense of it. That shift from "data repository"
+                        The pattern insights feature was the biggest learning. Users didn't just want a place to store data.
+                        They wanted something to help them make sense of it. That shift from "data repository"
                         to "collaborative tool for understanding your body" changed how we thought about every screen in the app.
                     </p>
                     <p>
                         If we continued development, the next priorities would be: real-time ingredient lookup for packaged foods
                         (barcode scanning), a companion web view for the doctor report, and more nuanced pattern detection that
-                        accounts for cumulative exposure — a known factor in celiac reactions that our current prototype doesn't address.
+                        accounts for cumulative exposure, a known factor in celiac reactions that our current prototype doesn't address.
                     </p>
                 </div>
 

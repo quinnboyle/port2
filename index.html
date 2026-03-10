@@ -194,7 +194,21 @@
     </footer>
 
 
-    <canvas id="mouseShadowTrail" class="mouse-shadow-trail" aria-hidden="true"></canvas>
+    <!-- Liquid blob cursor (goo effect) -->
+    <svg width="0" height="0" style="position:absolute;overflow:hidden;" aria-hidden="true">
+        <defs>
+            <filter id="goo-cursor">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+                <feColorMatrix in="blur" mode="matrix"
+                    values="1 0 0 0 0
+                            0 1 0 0 0
+                            0 0 1 0 0
+                            0 0 0 22 -10" result="goo"/>
+                <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+            </filter>
+        </defs>
+    </svg>
+    <div id="goo-cursor-container" aria-hidden="true"></div>
     <script>
     (function () {
         'use strict';
@@ -304,82 +318,67 @@
         })();
 
 
-        // ── Mouse shadow trail (film-like streaks) ─────────────────────────
+        // ── Liquid blob cursor ──────────────────────────────────────────────
         (function () {
-            const canvas = document.getElementById('mouseShadowTrail');
-            if (!canvas || window.matchMedia('(pointer: coarse)').matches) return;
+            if (window.matchMedia('(pointer: coarse)').matches) return;
 
-            const ctx = canvas.getContext('2d', { alpha: true });
-            if (!ctx) return;
+            const BASE = 76;
+            const container = document.getElementById('goo-cursor-container');
 
-            let w = 0;
-            let h = 0;
-            const dpr = Math.min(window.devicePixelRatio || 1, 2);
-            const points = [];
-            let raf = null;
-            let lastMove = 0;
+            // Main blob
+            const mainEl = document.createElement('div');
+            mainEl.style.cssText = `position:absolute;width:${BASE}px;height:${BASE}px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);`;
+            container.appendChild(mainEl);
 
-            function resize() {
-                w = window.innerWidth;
-                h = window.innerHeight;
-                canvas.width = Math.floor(w * dpr);
-                canvas.height = Math.floor(h * dpr);
-                canvas.style.width = w + 'px';
-                canvas.style.height = h + 'px';
-                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-            }
+            // Follower config — chained springs matching the React component
+            const configs = [
+                { stiffness: 420, damping: 34, mass: 1.00, size: 46 },
+                { stiffness: 380, damping: 38, mass: 1.25, size: 39 },
+                { stiffness: 340, damping: 42, mass: 1.50, size: 32 },
+                { stiffness: 300, damping: 46, mass: 1.75, size: 25 },
+            ];
 
-            function onMove(e) {
-                const now = performance.now();
-                lastMove = now;
-                points.push({ x: e.clientX, y: e.clientY, life: 1 });
-                if (points.length > 28) points.shift();
-                if (!raf) raf = requestAnimationFrame(draw);
-            }
-
-            function draw(now) {
-                ctx.clearRect(0, 0, w, h);
-
-                for (let i = points.length - 1; i >= 0; i--) {
-                    const p = points[i];
-                    p.life -= 0.06;
-                    if (p.life <= 0) points.splice(i, 1);
-                }
-
-                if (points.length > 1) {
-                    ctx.lineCap = 'round';
-                    ctx.lineJoin = 'round';
-
-                    for (let i = 1; i < points.length; i++) {
-                        const a = points[i - 1];
-                        const b = points[i];
-                        const alpha = Math.max(0, b.life) * 0.34;
-                        const width = 10 + (b.life * 14);
-
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(0, 0, 0, ${alpha.toFixed(3)})`;
-                        ctx.lineWidth = width;
-                        ctx.moveTo(a.x, a.y);
-                        ctx.lineTo(b.x, b.y);
-                        ctx.stroke();
-                    }
-                }
-
-                const moving = (now - lastMove) < 90;
-                if (points.length || moving) {
-                    raf = requestAnimationFrame(draw);
-                } else {
-                    raf = null;
-                }
-            }
-
-            window.addEventListener('pointermove', onMove, { passive: true });
-            window.addEventListener('resize', resize, { passive: true });
-            window.addEventListener('blur', () => {
-                points.length = 0;
-                ctx.clearRect(0, 0, w, h);
+            const followers = configs.map(cfg => {
+                const el = document.createElement('div');
+                el.style.cssText = `position:absolute;width:${cfg.size}px;height:${cfg.size}px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);opacity:0.95;`;
+                container.appendChild(el);
+                return { el, ...cfg, x: 0, y: 0, vx: 0, vy: 0 };
             });
-            resize();
+
+            let mouseX = 0, mouseY = 0;
+            let mx = 0, my = 0, mvx = 0, mvy = 0;
+            let last = null;
+
+            window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+
+            function tick(now) {
+                const dt = last ? Math.min((now - last) / 1000, 0.05) : 0.016;
+                last = now;
+
+                // Main blob spring (stiffness:650, damping:45, mass:0.9)
+                mvx += ((mouseX - mx) * 650 / 0.9 - mvx * 45 / 0.9) * dt;
+                mvy += ((mouseY - my) * 650 / 0.9 - mvy * 45 / 0.9) * dt;
+                mx += mvx * dt;
+                my += mvy * dt;
+                mainEl.style.left = mx + 'px';
+                mainEl.style.top  = my + 'px';
+
+                // Chained follower springs
+                let px = mx, py = my;
+                followers.forEach(f => {
+                    f.vx += ((px - f.x) * f.stiffness / f.mass - f.vx * f.damping / f.mass) * dt;
+                    f.vy += ((py - f.y) * f.stiffness / f.mass - f.vy * f.damping / f.mass) * dt;
+                    f.x += f.vx * dt;
+                    f.y += f.vy * dt;
+                    f.el.style.left = f.x + 'px';
+                    f.el.style.top  = f.y + 'px';
+                    px = f.x; py = f.y;
+                });
+
+                requestAnimationFrame(tick);
+            }
+
+            requestAnimationFrame(tick);
         })();
         // ── Film grain ─────────────────────────────────────────────
         (function () {

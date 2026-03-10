@@ -791,11 +791,16 @@ a:focus-visible, button:focus-visible {
 
 
 
-.mouse-shadow-trail {
+#goo-cursor-container {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: 160;
-    mix-blend-mode: multiply;
-    opacity: 0.92;
+    z-index: 9999;
+    filter: url(#goo-cursor);
+    mix-blend-mode: difference;
+}
+
+@media (pointer: fine) {
+    body { cursor: none; }
+    a, button, [role="button"], label { cursor: none; }
 }

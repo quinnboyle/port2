@@ -62,9 +62,9 @@ body {
     border-bottom-color: var(--border);
 }
 .nav-inner {
-    max-width: 1080px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 0 80px 0 120px;
+    padding: 0 60px;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
@@ -791,11 +791,16 @@ a:focus-visible, button:focus-visible {
 
 
 
-.mouse-shadow-trail {
+#goo-cursor-container {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: 160;
-    mix-blend-mode: multiply;
-    opacity: 0.92;
+    z-index: 9999;
+    filter: url(#goo-cursor);
+    mix-blend-mode: difference;
+}
+
+@media (pointer: fine) {
+    body { cursor: none; }
+    a, button, [role="button"], label { cursor: none; }
 }

@@ -15,11 +15,7 @@
     <!-- Navigation -->
     <nav class="nav" id="nav">
         <div class="nav-inner">
-            <div class="nav-brand">
-                <a href="#home" class="nav-car-home" id="navCarHome" aria-label="Go to top">
-                    <img src="porche911.png" alt="">
-                </a>
-            </div>
+            <a href="/" class="nav-logo">Quinn Boyle</a>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
                 <span></span><span></span><span></span>
             </button>
@@ -40,16 +36,15 @@
         <!-- Porsche 911 — animated out on scroll.
              Rename your photo to photos/porsche911.jpg and it will appear here. -->
         <div class="hero-car" id="heroCar">
-            <img src="porche911.png" alt="" aria-hidden="true" class="hero-car-img">
+            <img src="photos/porsche911.jpg" alt="" aria-hidden="true" class="hero-car-img">
         </div>
 
         <div class="hero-grid">
         <div class="hero-left">
             <h1 class="hero-name reveal-up">
-                <span class="hero-greeting">Hi I&apos;m,</span>
-                <span class="hero-typed" id="heroTypedName" data-text="Quinn Boyle"></span>
+                Quinn<br>Boyle
             </h1>
-            <p class="hero-role reveal-up" aria-hidden="true">&nbsp;</p>
+            <p class="hero-role reveal-up">UX &amp; Product Designer</p>
             <p class="hero-bio reveal-up">
                 Recent graduate based in Philadelphia looking for entry-level roles in product design and development.
                 I care about building things that are simple, useful, and actually make sense to the people using them.
@@ -57,6 +52,20 @@
             <div class="hero-actions reveal-up">
                 <a href="#work" class="btn-primary">See my work →</a>
                 <a href="mailto:quinnboyle237@gmail.com" class="btn-ghost">Get in touch</a>
+            </div>
+        </div>
+        <div class="hero-right reveal-up">
+            <!--
+                ADD YOUR HEADSHOT:
+                <img src="photos/headshot.jpg" alt="Quinn Boyle" class="hero-photo">
+            -->
+            <div class="hero-photo-placeholder">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                <span>Add your photo here</span>
+                <small>photos/headshot.jpg</small>
             </div>
         </div>
         </div><!-- /hero-grid -->
@@ -91,31 +100,31 @@
 
         <!-- Project 2 -->
         <article class="project-row project-row--flip reveal-up">
-            <a href="https://www.mud-and-meadows.com" target="_blank" rel="noopener noreferrer" class="project-img-wrap">
-                <div class="project-img-inner project-img-inner--empty">
-                    <span>Mud &amp; Meadows</span>
-                </div>
-            </a>
-            <div class="project-info">
-                <div class="project-pill">UX RESEARCH &amp; INTERACTION DESIGN</div>
-                <h2 class="project-title">Mud &amp; Meadows</h2>
-                <p class="project-desc">The website I built for Mud &amp; Meadows, focused on a clean browsing experience and a warm visual identity.</p>
-                <a href="https://www.mud-and-meadows.com" target="_blank" rel="noopener noreferrer" class="project-link">Visit Website -&gt;</a>
-            </div>
-        </article>
-
-        <!-- Project 3 -->
-        <article class="project-row reveal-up">
-            <a href="case-study.html?project=3" class="project-img-wrap">
+            <a href="case-study.html?project=2" class="project-img-wrap">
                 <div class="project-img-inner project-img-inner--empty">
                     <span>Coming Soon</span>
                 </div>
             </a>
             <div class="project-info">
-                <div class="project-pill">DEVELOPMENT &amp; ACCESSIBILITY</div>
-                <h2 class="project-title">Project Three</h2>
-                <p class="project-desc">Details coming soon. A project built around accessibility-first thinking — designing and coding components that work for everyone, regardless of ability or device.</p>
-                <a href="case-study.html?project=3" class="project-link">Coming Soon →</a>
+                <div class="project-pill">UX RESEARCH &amp; INTERACTION DESIGN</div>
+                <h2 class="project-title">Project Two</h2>
+                <p class="project-desc">Details coming soon. This project focuses on improving how people navigate complex information — making a difficult task feel straightforward and approachable.</p>
+                <a href="case-study.html?project=2" class="project-link">Coming Soon →</a>
+            </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-row reveal-up">
+            <a href="gutcheck-case-study.html" class="project-img-wrap">
+                <div class="project-img-inner project-img-inner--empty">
+                    <span>GutCheck</span>
+                </div>
+            </a>
+            <div class="project-info">
+                <div class="project-pill">UX RESEARCH &amp; MOBILE DESIGN</div>
+                <h2 class="project-title">GutCheck</h2>
+                <p class="project-desc">A food and symptom tracking app designed for people with celiac disease, IBS, and food sensitivities — helping them log meals, track how they feel, and surface patterns that connect the two.</p>
+                <a href="gutcheck-case-study.html" class="project-link">View Case Study →</a>
             </div>
         </article>
     </section>
@@ -126,7 +135,6 @@
             <div class="about-left reveal-up">
                 <p class="section-label">About</p>
                 <h2 class="about-title">A bit<br>about me.</h2>
-                <img src="photos/headshotfilm.jpg" alt="Quinn Boyle" class="about-headshot">
             </div>
             <div class="about-right">
                 <div class="about-text reveal-up">
@@ -191,8 +199,6 @@
         </div>
     </footer>
 
-
-    <canvas id="mouseShadowTrail" class="mouse-shadow-trail" aria-hidden="true"></canvas>
     <script>
     (function () {
         'use strict';
@@ -237,38 +243,10 @@
             setTimeout(() => el.classList.add('revealed'), 100 + i * 120);
         });
 
-
-        // Typewriter name
-        (function () {
-            const typed = document.getElementById('heroTypedName');
-            if (!typed) return;
-            const full = typed.dataset.text || 'Quinn Boyle';
-            const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-            if (reduced) {
-                typed.textContent = full;
-                typed.classList.add('done');
-                return;
-            }
-
-            let i = 0;
-            function tick() {
-                i += 1;
-                typed.textContent = full.slice(0, i);
-                if (i < full.length) {
-                    setTimeout(tick, 95);
-                } else {
-                    typed.classList.add('done');
-                }
-            }
-            setTimeout(tick, 360);
-        })();
-
         // ── Scroll-driven car animation ────────────────────────────
         (function () {
             const wrapper = document.getElementById('heroScrollWrapper');
             const car     = document.getElementById('heroCar');
-            const navCar  = document.getElementById('navCarHome');
             if (!wrapper || !car) return;
 
             function onScroll() {
@@ -288,97 +266,13 @@
 
                 // Drive car off to the right (translateX) + very slight upward
                 car.style.transform =
-                    `translateX(${eased * 165}%) translateY(${-eased * 6}%) scale(${1 - (eased * 0.08)})`;
-
-                if (navCar && p > 0.98) {
-                    nav.classList.add('car-docked');
-                } else {
-                    nav.classList.remove('car-docked');
-                }
+                    `translateX(${eased * 160}%) translateY(${-eased * 4}%)`;
             }
 
             window.addEventListener('scroll', onScroll, { passive: true });
             onScroll(); // set initial position
         })();
 
-
-        // ── Mouse shadow trail (film-like streaks) ─────────────────────────
-        (function () {
-            const canvas = document.getElementById('mouseShadowTrail');
-            if (!canvas || window.matchMedia('(pointer: coarse)').matches) return;
-
-            const ctx = canvas.getContext('2d', { alpha: true });
-            if (!ctx) return;
-
-            let w = 0;
-            let h = 0;
-            const dpr = Math.min(window.devicePixelRatio || 1, 2);
-            const points = [];
-            let raf = null;
-            let lastMove = 0;
-
-            function resize() {
-                w = window.innerWidth;
-                h = window.innerHeight;
-                canvas.width = Math.floor(w * dpr);
-                canvas.height = Math.floor(h * dpr);
-                canvas.style.width = w + 'px';
-                canvas.style.height = h + 'px';
-                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-            }
-
-            function onMove(e) {
-                const now = performance.now();
-                lastMove = now;
-                points.push({ x: e.clientX, y: e.clientY, life: 1 });
-                if (points.length > 28) points.shift();
-                if (!raf) raf = requestAnimationFrame(draw);
-            }
-
-            function draw(now) {
-                ctx.clearRect(0, 0, w, h);
-
-                for (let i = points.length - 1; i >= 0; i--) {
-                    const p = points[i];
-                    p.life -= 0.06;
-                    if (p.life <= 0) points.splice(i, 1);
-                }
-
-                if (points.length > 1) {
-                    ctx.lineCap = 'round';
-                    ctx.lineJoin = 'round';
-
-                    for (let i = 1; i < points.length; i++) {
-                        const a = points[i - 1];
-                        const b = points[i];
-                        const alpha = Math.max(0, b.life) * 0.34;
-                        const width = 10 + (b.life * 14);
-
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(0, 0, 0, ${alpha.toFixed(3)})`;
-                        ctx.lineWidth = width;
-                        ctx.moveTo(a.x, a.y);
-                        ctx.lineTo(b.x, b.y);
-                        ctx.stroke();
-                    }
-                }
-
-                const moving = (now - lastMove) < 90;
-                if (points.length || moving) {
-                    raf = requestAnimationFrame(draw);
-                } else {
-                    raf = null;
-                }
-            }
-
-            window.addEventListener('pointermove', onMove, { passive: true });
-            window.addEventListener('resize', resize, { passive: true });
-            window.addEventListener('blur', () => {
-                points.length = 0;
-                ctx.clearRect(0, 0, w, h);
-            });
-            resize();
-        })();
         // ── Film grain ─────────────────────────────────────────────
         (function () {
             const grain  = document.getElementById('heroGrain');
@@ -405,4 +299,3 @@
 
 </body>
 </html>
-

@@ -522,6 +522,21 @@ body {
 }
 .project-img-wrap:hover .project-img-inner img { transform: scale(1.05); }
 
+.project-img-inner--iframe {
+    width: 100%; height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.site-preview-iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 300%;
+    height: 300%;
+    border: none;
+    pointer-events: none;
+    transform: scale(0.333);
+    transform-origin: top left;
+}
 .project-img-inner--empty {
     display: flex;
     align-items: center;

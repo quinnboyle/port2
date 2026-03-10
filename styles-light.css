@@ -634,9 +634,9 @@ body {
 }
 .about-headshot {
     width: 280px;
-    height: 340px;
-    object-fit: cover;
-    border-radius: 150px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px;
     border: 1px solid var(--border);
     display: block;
     margin-top: 28px;
@@ -671,7 +671,7 @@ body {
 @media (max-width: 968px) {
     .about-section { padding: 64px 24px; }
     .about-inner { grid-template-columns: 1fr; gap: 44px; }
-    .about-headshot { width: 220px; height: 268px; margin-top: 22px; }
+    .about-headshot { width: 220px; height: auto; margin-top: 22px; }
 }
 @media (max-width: 560px) {
     .skills-grid { grid-template-columns: 1fr 1fr; }

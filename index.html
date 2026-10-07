@@ -195,21 +195,6 @@
     </footer>
 
 
-    <!-- Liquid blob cursor (goo effect) -->
-    <svg width="0" height="0" style="position:absolute;overflow:hidden;" aria-hidden="true">
-        <defs>
-            <filter id="goo-cursor">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
-                <feColorMatrix in="blur" mode="matrix"
-                    values="1 0 0 0 0
-                            0 1 0 0 0
-                            0 0 1 0 0
-                            0 0 0 22 -10" result="goo"/>
-                <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
-            </filter>
-        </defs>
-    </svg>
-    <div id="goo-cursor-container" aria-hidden="true"></div>
     <script>
     (function () {
         'use strict';
@@ -319,68 +304,6 @@
         })();
 
 
-        // ── Liquid blob cursor ──────────────────────────────────────────────
-        (function () {
-            if (window.matchMedia('(pointer: coarse)').matches) return;
-
-            const BASE = 76;
-            const container = document.getElementById('goo-cursor-container');
-
-            // Main blob
-            const mainEl = document.createElement('div');
-            mainEl.style.cssText = `position:absolute;width:${BASE}px;height:${BASE}px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);`;
-            container.appendChild(mainEl);
-
-            // Follower config — chained springs matching the React component
-            const configs = [
-                { stiffness: 420, damping: 34, mass: 1.00, size: 46 },
-                { stiffness: 380, damping: 38, mass: 1.25, size: 39 },
-                { stiffness: 340, damping: 42, mass: 1.50, size: 32 },
-                { stiffness: 300, damping: 46, mass: 1.75, size: 25 },
-            ];
-
-            const followers = configs.map(cfg => {
-                const el = document.createElement('div');
-                el.style.cssText = `position:absolute;width:${cfg.size}px;height:${cfg.size}px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);opacity:0.95;`;
-                container.appendChild(el);
-                return { el, ...cfg, x: 0, y: 0, vx: 0, vy: 0 };
-            });
-
-            let mouseX = 0, mouseY = 0;
-            let mx = 0, my = 0, mvx = 0, mvy = 0;
-            let last = null;
-
-            window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
-
-            function tick(now) {
-                const dt = last ? Math.min((now - last) / 1000, 0.05) : 0.016;
-                last = now;
-
-                // Main blob spring (stiffness:650, damping:45, mass:0.9)
-                mvx += ((mouseX - mx) * 650 / 0.9 - mvx * 45 / 0.9) * dt;
-                mvy += ((mouseY - my) * 650 / 0.9 - mvy * 45 / 0.9) * dt;
-                mx += mvx * dt;
-                my += mvy * dt;
-                mainEl.style.left = mx + 'px';
-                mainEl.style.top  = my + 'px';
-
-                // Chained follower springs
-                let px = mx, py = my;
-                followers.forEach(f => {
-                    f.vx += ((px - f.x) * f.stiffness / f.mass - f.vx * f.damping / f.mass) * dt;
-                    f.vy += ((py - f.y) * f.stiffness / f.mass - f.vy * f.damping / f.mass) * dt;
-                    f.x += f.vx * dt;
-                    f.y += f.vy * dt;
-                    f.el.style.left = f.x + 'px';
-                    f.el.style.top  = f.y + 'px';
-                    px = f.x; py = f.y;
-                });
-
-                requestAnimationFrame(tick);
-            }
-
-            requestAnimationFrame(tick);
-        })();
         // ── Film grain ─────────────────────────────────────────────
         (function () {
             const grain  = document.getElementById('heroGrain');

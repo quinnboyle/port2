@@ -791,16 +791,3 @@ a:focus-visible, button:focus-visible {
 
 
 
-#goo-cursor-container {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9999;
-    filter: url(#goo-cursor);
-    mix-blend-mode: difference;
-}
-
-@media (pointer: fine) {
-    body { cursor: none; }
-    a, button, [role="button"], label { cursor: none; }
-}

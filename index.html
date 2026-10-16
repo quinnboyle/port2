@@ -6,7 +6,7 @@
     <meta name="description" content="Quinn Boyle — UX & Product Designer based in Philadelphia. Recent graduate seeking entry-level design and product development roles.">
     <title>Quinn Boyle — UX Designer</title>
     <link rel="icon" type="image/png" href="photos/tinylogo.png">
-    <link rel="stylesheet" href="styles-light.css">
+    <link rel="stylesheet" href="styles-light.css?v=20261016">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@
             </ul>
         </div>
     </nav>
-    <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu" id="mobileMenu" hidden>
         <a href="#work">Work</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
@@ -216,6 +216,7 @@
         function setMenu(open) {
             toggle.classList.toggle('open', open);
             mobileMenu.classList.toggle('open', open);
+            mobileMenu.hidden = !open;
             document.body.style.overflow = open ? 'hidden' : '';
         }
         toggle.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));

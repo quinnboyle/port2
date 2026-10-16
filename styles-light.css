@@ -159,24 +159,31 @@ body {
     .nav.scrolled { padding: 14px 0; }
     .nav-inner { grid-template-columns: 1fr auto; padding: 0 24px; max-width: none; }
     .nav-toggle { grid-column: 2; display: flex; position: relative; z-index: 101; }
-   .nav-links {
-        grid-column: 1 / -1;
+    .nav-links { display: none; }
+}
+
+/* ── Mobile menu (full-screen overlay, lives outside the nav) ── */
+.mobile-menu { display: none; }
+@media (max-width: 768px) {
+    .mobile-menu {
         position: fixed;
         inset: 0;
+        z-index: 99;
         background: var(--bg);
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 32px;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s, visibility 0.3s;
-        z-index: 99;
-        justify-self: stretch;
-        align-self: stretch;
+        gap: 36px;
     }
-    .nav-links.open { opacity: 1; visibility: visible; }
-    .nav-links a { font-size: 1.5rem; font-weight: 600; color: var(--text); }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--text);
+        text-decoration: none;
+        transition: opacity 0.2s;
+    }
+    .mobile-menu a:active { opacity: 0.5; }
 }
 
 /* ── Hero scroll wrapper — tall so the sticky hero "holds" ─────
